@@ -35,7 +35,7 @@ export default function Profile() {
       if (!token) {
         const errorMessage = "No token found. Please login again.";
         setError(errorMessage);
-        scheduleNotification("Error", errorMessage);
+
         return;
       }
 
@@ -57,7 +57,6 @@ export default function Profile() {
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Network error";
       setError(errorMessage);
-      scheduleNotification("Error", errorMessage);
     } finally {
       setLoading(false);
     }

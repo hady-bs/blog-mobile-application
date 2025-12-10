@@ -1,7 +1,6 @@
 import baseUrl from "@/constant/api";
 import { useAuth } from "@/constant/AuthContext";
 import Blog, { Blogs } from "@/constant/interfaces";
-import { useNotifications } from "@/constant/NotificationContext";
 import { useTheme } from "@/constant/ThemeContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -25,7 +24,6 @@ export default function Index() {
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { scheduleNotification } = useNotifications();
 
   const styles = getStyles(theme);
 
@@ -43,7 +41,6 @@ export default function Index() {
       const errorMessage =
         err instanceof Error ? err.message : "An error occurred";
       setError(errorMessage);
-      scheduleNotification("Error", `Failed to fetch blogs: ${errorMessage}`);
     } finally {
       setLoading(false);
     }

@@ -17,6 +17,7 @@ export default function TabLayout() {
           borderTopWidth: 1,
           paddingBottom: 20,
           paddingTop: 5,
+          marginBottom: 5,
         },
         headerRight: () => (
           <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>

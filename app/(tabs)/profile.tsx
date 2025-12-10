@@ -1,7 +1,6 @@
 import baseUrl from "@/constant/api";
 import { useAuth } from "@/constant/AuthContext";
 import { ProfileResponse } from "@/constant/interfaces";
-import { useNotifications } from "@/constant/NotificationContext";
 import { useRouter } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { useEffect, useState } from "react";
@@ -21,7 +20,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function Profile() {
   const router = useRouter();
   const { logout } = useAuth();
-  const { scheduleNotification } = useNotifications();
   const [profileData, setProfileData] = useState<ProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +53,6 @@ export default function Profile() {
       } else {
         const errorMessage = `Failed to fetch profile: ${response.status}`;
         setError(errorMessage);
-        scheduleNotification("Error", errorMessage);
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Network error";
